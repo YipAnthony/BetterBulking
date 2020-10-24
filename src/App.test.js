@@ -3,7 +3,11 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+import { render, screen } from '@testing-library/react';
+import App from './App'
 
-// test('adds 1 + 2 to equal 3', () => {
-//   expect(App(1, 2)).toBe(3);
-// });
+test ('fakeTest', () => {
+    expect(true).toBe(true)
+})
