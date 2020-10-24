@@ -4,6 +4,7 @@ import PromptUserInfo from './Components/PromptUserInfo'
 function App() {
 
   let [dailyCal, setDailyCal] = useState(Number)
+  let [userDiet, setUserDiet] = useState("")
   let [currentDailyCal, setCurrentDailyCal] = useState(
     {
       "m": Number,
@@ -100,10 +101,6 @@ function App() {
     }
   )
 
-  function setDailyCalRequirement(input) {
-    setDailyCal(() => input)
-  }
-
   function inputSelectedMeal(day, time, meal) {
     setSelectedMeals(prev => {
       let output = {
@@ -117,7 +114,8 @@ function App() {
   return (
     <div className="App">
       <PromptUserInfo
-          setDailyCalRequirement={setDailyCalRequirement}
+          setDailyCal={setDailyCal}
+          setUserDiet={setUserDiet}
       /> 
     </div>
   );

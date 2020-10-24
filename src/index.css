@@ -11,3 +11,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.userInfoContainer{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.userPrefContainer {
+  position: relative;
+  margin: auto;
+  margin-left: 50px;
+}
+
+.calForm {
+  font-size: 40px;
+  border-radius: 0;
+  border-bottom: 4px black solid !important;
+  width: 15%;
+  padding-bottom: 0;
+  display: inline;
+}
+.smallerFont span{
+  font-size: 40px;
+}
+
+.dietButtonContainer {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: none;
+}
+
+.dietButton {
+  margin: 15px;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
