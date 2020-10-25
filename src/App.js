@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PromptUserInfo from './Components/PromptUserInfo'
+import MealPlanner from './Components/MealPlanner'
 
 function App() {
 
@@ -55,50 +56,57 @@ function App() {
     }
   )
   let [selectedMeals, setSelectedMeals] = useState(
-    {
-      "m": {
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+    [
+      {
+        "day":"Monday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": [{"title": "Curry", "calories":500},{"title": "Tacos", "calories":800} ]
       },
-      "tu": {
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+      {
+        "day":"Tuesday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": []
       },
-      "w": {
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+      {
+        "day":"Wednesday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": []
       },
-      "th": {
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+      {
+        "day":"Thursday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": [{"title": "Chinese", "calories":1000},{"title": "Rice", "calories":500} ]
       },
-      "f": {
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+      {
+        "day":"Friday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": []
       },
-      "sa": {
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+      {
+        "day":"Saturday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": []
       },
-      "su":{
-        "breakfast":{},
-        "lunch":{},
-        "dunner":{},
-        "snack": {}
+      {
+        "day":"Sunday",
+        "Breakfast":{},
+        "Lunch":{},
+        "Dinner":{},
+        "Snack": []
       }
-    }
+    ]
   )
 
   function inputSelectedMeal(day, time, meal) {
@@ -111,12 +119,22 @@ function App() {
     })
   }
 
+  let [initialInput, setInitialInput] = useState(true)
+
+
   return (
     <div className="App">
+      {initialInput ? 
       <PromptUserInfo
           setDailyCal={setDailyCal}
           setUserDiet={setUserDiet}
-      /> 
+          setInitialInput={setInitialInput}
+      /> : null}
+      {!initialInput ? 
+      <MealPlanner 
+        selectedMeals={selectedMeals}/>
+      :null
+      }
     </div>
   );
 }

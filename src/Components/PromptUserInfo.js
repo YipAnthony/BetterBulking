@@ -51,6 +51,10 @@ export default function PromptUserInfo(props) {
         props.setDailyCal(() => calInput);
         setMoveOn(() => true)
     }
+    function finish() {
+        props.setUserDiet(() => userDiet)
+        props.setInitialInput(() => false)
+    }
 
     return (
         <div className="form-group userInfoContainer">
@@ -72,7 +76,7 @@ export default function PromptUserInfo(props) {
                 <div className="dietButtonContainer">{dietButtons}</div>
                 <button 
                     className="btn btn-dark btn-lg shadow-none"
-                    onClick={() => props.setUserDiet(() => userDiet)}>Submit</button>
+                    onClick={finish}>Submit</button>
             </div>:null}
         </div>
     )
