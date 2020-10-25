@@ -60,7 +60,7 @@ export default function PromptUserInfo(props) {
         <div className="form-group userInfoContainer">
             {moveOn === false? 
             <div className="userPrefContainer">
-                <label>What's your daily calorie intake goal?</label>
+                <label>What's your daily calorie intake goal?</label><br/>
                 <span className="smallerFont"><input value={calInput} 
                     onChange={handleInput} 
                     className="calForm form-control input border-0 shadow-none"></input><span>cals</span></span>

@@ -21,13 +21,20 @@ code {
   font-weight: bold;
 }
 
+.recipeSearchContainer{
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
 .userPrefContainer {
   position: relative;
   margin: auto;
   margin-left: 50px;
 }
 
-.calForm {
+.calForm, .searchForm {
   font-size: 40px;
   border-radius: 0;
   border-bottom: 4px black solid !important;
@@ -35,6 +42,11 @@ code {
   padding-bottom: 0;
   display: inline;
 }
+
+.searchForm {
+  width: 80%;
+}
+
 .smallerFont span{
   font-size: 40px;
 }
@@ -50,4 +62,18 @@ code {
   margin: 15px;
   margin-bottom: 5px;
   margin-left: 0;
+}
+
+.dayOfWeekContainer {
+  border: 1px black solid ;
+  border-radius: 5px;
+}
+
+.dayOfWeek {
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.mealTime {
+  text-align: center;
 }

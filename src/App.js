@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PromptUserInfo from './Components/PromptUserInfo'
 import MealPlanner from './Components/MealPlanner'
+import SearchMeals from './Components/SearchMeals'
 
 function App() {
 
@@ -58,49 +59,49 @@ function App() {
   let [selectedMeals, setSelectedMeals] = useState(
     [
       {
-        "day":"Monday",
+        "day":"Mo",
         "Breakfast":{},
         "Lunch":{},
         "Dinner":{},
         "Snack": [{"title": "Curry", "calories":500},{"title": "Tacos", "calories":800} ]
       },
       {
-        "day":"Tuesday",
+        "day":"Tu",
+        "Breakfast":{},
+        "Lunch":{"title":"noodles"},
+        "Dinner":{},
+        "Snack": []
+      },
+      {
+        "day":"We",
         "Breakfast":{},
         "Lunch":{},
         "Dinner":{},
         "Snack": []
       },
       {
-        "day":"Wednesday",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
-        "Snack": []
-      },
-      {
-        "day":"Thursday",
+        "day":"Th",
         "Breakfast":{},
         "Lunch":{},
         "Dinner":{},
         "Snack": [{"title": "Chinese", "calories":1000},{"title": "Rice", "calories":500} ]
       },
       {
-        "day":"Friday",
+        "day":"Fr",
         "Breakfast":{},
         "Lunch":{},
         "Dinner":{},
         "Snack": []
       },
       {
-        "day":"Saturday",
+        "day":"Sa",
         "Breakfast":{},
         "Lunch":{},
         "Dinner":{},
         "Snack": []
       },
       {
-        "day":"Sunday",
+        "day":"Su",
         "Breakfast":{},
         "Lunch":{},
         "Dinner":{},
@@ -131,8 +132,11 @@ function App() {
           setInitialInput={setInitialInput}
       /> : null}
       {!initialInput ? 
-      <MealPlanner 
-        selectedMeals={selectedMeals}/>
+      <div>
+        <MealPlanner 
+          selectedMeals={selectedMeals}/>
+        <SearchMeals/>
+      </div>
       :null
       }
     </div>
