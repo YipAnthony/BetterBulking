@@ -107,8 +107,29 @@ export default function AddMealPopUp(props) {
                     <div className="mealCal">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["calories"]}</div> */}
                 </div>
                 <div className="mealTime">
-                    {snackCheck(value)}
-                    {/* {snackGenerator(value)} */}
+                    {value["Snack"].length  === 0 ? 
+                    <button 
+                            className="addButton btn btn-sm btn-outline-dark"
+                            data-index={index}
+                            data-day="Snack"
+                            onClick={handleAddRecipe}>Add</button>
+                        :
+                        <div className="d-flex">
+                            <button 
+                                className="addButton btn btn-sm btn-outline-dark"
+                                data-index={index}
+                                data-day="Snack"
+                                onClick={handleAddAdditionalMeal}
+                                >Add</button>
+                            <button 
+                                data-index={index}
+                                data-day="Snack"
+                                className="addButton btn btn-sm btn-outline-dark"
+                                onClick={handleAddRecipe}>Replace</button>
+                        </div>
+                    }
+                    {/* <div className="mealName">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["title"]}</div>
+                    <div className="mealCal">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["calories"]}</div> */}
                 </div>
                     
             </div>

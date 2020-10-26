@@ -9,22 +9,22 @@ export default function MealPlanner(props) {
             <div key={value["day"]} className="col-sm-1 dayOfWeekContainer">
                 <div className="dayOfWeek">{value["day"]}</div>
                 <div className="mealTime">
-                    {value["Breakfast"].length === 0 ? "o": "X"}
+                {mealCheck(value, "Breakfast")}
                     {/* <div className="mealName">{Number(Object.keys(value["Breakfast"])) === 0 ? null: value["Breakfast"]["title"]}</div>
                     <div className="mealCal">{Number(Object.keys(value["Breakfast"])) === 0 ? null: value["Breakfast"]["calories"]}</div> */}
                 </div>
                 <div className="mealTime">
-                    {value["Lunch"].length === 0 ? "o": "X"}
+                {mealCheck(value, "Lunch")}
                     {/* <div className="mealName">{Number(Object.keys(value["Lunch"])) === 0 ? null: value["Lunch"]["title"]}</div>
                     <div className="mealCal">{Number(Object.keys(value["Lunch"])) === 0 ? null: value["Lunch"]["calories"]}</div> */}
                 </div>
                 <div className="mealTime">
-                    {value["Dinner"].length === 0 ? "o": "X"}
+                {mealCheck(value, "Dinner")}
                     {/* <div className="mealName">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["title"]}</div>
                     <div className="mealCal">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["calories"]}</div> */}
                 </div>
                 <div className="mealTime">
-                    {snackCheck(value)}
+                    {mealCheck(value, "Snack")}
                     {/* {snackGenerator(value)} */}
                 </div>
                     
@@ -32,14 +32,16 @@ export default function MealPlanner(props) {
         )
     })
     
-    function snackCheck(day) {
-        if (day["Snack"].length === 0) return
+    function mealCheck(day, meal) {
+        if (day[meal].length === 0) {
+            return (
+                <span key={day[meal]["title"]}>o</span>
+            )
+        }
         let outputArray = [];
-        for (let i=0; i < day["Snack"].length; i++) {
+        for (let i=0; i < day[meal].length; i++) {
             outputArray.push(
-                <span key={day["Snack"][i]["title"] + [i]}> 
-                    X
-                </span>
+                <span key={day[meal][i]["title"] + [i]}>X</span>
             )
         }
         return outputArray
