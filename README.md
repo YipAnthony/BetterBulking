@@ -1,9 +1,20 @@
 # BetterBulking
-
-## Update Log
 10/24/2020 - present
 
 Better Bulking is an app designed to simplify the process of weekly meal planning. The app allows users to directly search or import recipes, specify dietary restrictions and required calorie requirements, and generate a compiled shopping list. 
+
+## Update Log
+
+#### 10/26: thoughts on React state hooks
+- In previous projects, I used the useState hook multiple times within a single component to create numerous states. These states only had one dimension (e.g., only array or only object) because it was recommended when I first learned about the useState hook. While this worked, the number of states became difficult to keep track of. For this project, I tried using states with multiple dimensions (e.g., the "selectedMeals" state is an array containing objects, containing arrays). This allowed me to have a single state to keep track of all the weekly meals and as a result I only needed one function to change the state. The biggest issue with this strategy was to design "pure functions" to prevent mutation of the previous state. For example:
+    ```javascript
+    props.setSelectedMeals(prev =>{
+            let output = [...prev]
+            output[index] = {...output[index], [day]:[...output[index][day], meal]}
+            return output
+        })
+    ```
+I'm also curious whether combining mutliple states into one is less efficient due to more re-renders. Will have to look into this more. 
 
 
 ## To Do: 
