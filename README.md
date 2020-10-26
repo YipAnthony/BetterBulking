@@ -6,7 +6,8 @@ Better Bulking is an app designed to simplify the process of weekly meal plannin
 ## Update Log
 
 #### 10/26: thoughts on React state hooks
-- In previous projects, I used the useState hook multiple times within a single component to create numerous states. These states only had one dimension (e.g., only array or only object) because it was recommended when I first learned about the useState hook. While this worked, the number of states became difficult to keep track of. For this project, I tried using states with multiple dimensions (e.g., the "selectedMeals" state is an array containing objects, containing arrays). This allowed me to have a single state to keep track of all the weekly meals and as a result I only needed one function to change the state. The biggest issue with this strategy was to design "pure functions" to prevent mutation of the previous state. For example:
+- In previous projects, I used the useState hook multiple times within a single component to create numerous states. These states only had one dimension (e.g., only array or only object) because it was recommended when I first learned about the useState hook. While this worked, the number of states became difficult to keep track of. For this project, I tried using states with multiple dimensions (e.g., the "selectedMeals" state is an array containing objects, containing arrays). This allowed me to have a single state to keep track of all the weekly meals and as a result I only needed one function to change the state. 
+- The biggest issue I ran into was when I noticed items were being added twice. Fortunately after hours of confusion, I finally discovered the purpose of double-rendering in React.StrictMode and the reason for designing "pure functions" to prevent mutation of the previous state. For example:
     ```javascript
     props.setSelectedMeals(prev =>{
             let output = [...prev]
@@ -14,7 +15,7 @@ Better Bulking is an app designed to simplify the process of weekly meal plannin
             return output
         })
     ```
-I'm also curious whether combining mutliple states into one is less efficient due to more re-renders. Will have to look into this more. 
+- I'm also curious whether combining mutliple states into one is less efficient due to increased re-renders. Will have to look into this more. 
 
 
 ## To Do: 
