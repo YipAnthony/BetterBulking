@@ -60,64 +60,58 @@ function App() {
     [
       {
         "day":"Mo",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": [{"title": "Curry", "calories":500},{"title": "Tacos", "calories":800} ]
       },
       {
         "day":"Tu",
-        "Breakfast":{},
-        "Lunch":{"title":"noodles"},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": []
       },
       {
         "day":"We",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": []
       },
       {
         "day":"Th",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": [{"title": "Chinese", "calories":1000},{"title": "Rice", "calories":500} ]
       },
       {
         "day":"Fr",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": []
       },
       {
         "day":"Sa",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": []
       },
       {
         "day":"Su",
-        "Breakfast":{},
-        "Lunch":{},
-        "Dinner":{},
+        "Breakfast":[],
+        "Lunch":[],
+        "Dinner":[],
         "Snack": []
       }
     ]
   )
 
   function inputSelectedMeal(day, time, meal) {
-    setSelectedMeals(prev => {
-      let output = {
-        ...prev,
-      }
-      output[day][time] = meal
-      return output
-    })
+
   }
 
   let [initialInput, setInitialInput] = useState(true)
@@ -135,7 +129,11 @@ function App() {
       <div>
         <MealPlanner 
           selectedMeals={selectedMeals}/>
-        <SearchMeals/>
+        <SearchMeals
+          setSelectedMeals={setSelectedMeals}
+          inputSelectedMeal={inputSelectedMeal}
+          selectedMeals={selectedMeals}
+        />
       </div>
       :null
       }

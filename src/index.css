@@ -77,3 +77,60 @@ code {
 .mealTime {
   text-align: center;
 }
+
+.searchResultsContainer {
+  margin-left: 50px;
+}
+
+.singleRecipeResult {
+  margin: 10px;
+}
+
+.singleRecipeResultImg {
+  width: 15%;
+}
+
+.singleRecipeResultTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.singleRecipeResultTextButtonContainer{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.singleRecipeResultTextButtonContainer button {
+  width: 100px;
+}
+
+.addMealContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  height: 20%;
+  margin: auto;
+  z-index: 5;
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.addMealCheckboxes {
+  display: grid;
+  grid-template-columns: 2fr repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  text-align: center;
+}
+.addMealCheckboxes input {
+  margin: auto !important;
+}
+
+.addMealCheckboxes input:checked {
+  /* background-color: red!important; */
+
+}

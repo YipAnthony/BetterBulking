@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import apiCall from './apiCall'
 import SearchResultsContainer from './SearchResultsContainer'
 
-export default function SearchMeals() {
+export default function SearchMeals(props) {
 
     const [userSearchInput, setUserSearchInput] = useState("")
     const [searchResults, setSearchResults] = useState({})
@@ -33,7 +33,11 @@ export default function SearchMeals() {
                 </span>
             </div>
             <SearchResultsContainer
-                searchResults={searchResults}/>
+                searchResults={searchResults}
+                selectedMeals={props.selectedMeals}
+                inputSelectedMeal={props.inputSelectedMeal}
+                setSelectedMeals={props.setSelectedMeals}
+                />
         </div>
     )
 }

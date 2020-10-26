@@ -9,17 +9,17 @@ export default function MealPlanner(props) {
             <div key={value["day"]} className="col-sm-1 dayOfWeekContainer">
                 <div className="dayOfWeek">{value["day"]}</div>
                 <div className="mealTime">
-                    {Number(Object.keys(value["Breakfast"])) === 0 ? "o": "X"}
+                    {value["Breakfast"].length === 0 ? "o": "X"}
                     {/* <div className="mealName">{Number(Object.keys(value["Breakfast"])) === 0 ? null: value["Breakfast"]["title"]}</div>
                     <div className="mealCal">{Number(Object.keys(value["Breakfast"])) === 0 ? null: value["Breakfast"]["calories"]}</div> */}
                 </div>
                 <div className="mealTime">
-                    {Number(Object.keys(value["Lunch"])) === 0 ? "o": "X"}
+                    {value["Lunch"].length === 0 ? "o": "X"}
                     {/* <div className="mealName">{Number(Object.keys(value["Lunch"])) === 0 ? null: value["Lunch"]["title"]}</div>
                     <div className="mealCal">{Number(Object.keys(value["Lunch"])) === 0 ? null: value["Lunch"]["calories"]}</div> */}
                 </div>
                 <div className="mealTime">
-                    {Number(Object.keys(value["Dinner"])) === 0 ? "o": "X"}
+                    {value["Dinner"].length === 0 ? "o": "X"}
                     {/* <div className="mealName">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["title"]}</div>
                     <div className="mealCal">{Number(Object.keys(value["Dinner"])) === 0 ? null: value["Dinner"]["calories"]}</div> */}
                 </div>
