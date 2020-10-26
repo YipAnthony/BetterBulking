@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PromptUserInfo from './Components/PromptUserInfo'
 import MealPlanner from './Components/MealPlanner'
 import SearchMeals from './Components/SearchMeals'
@@ -8,15 +8,15 @@ function App() {
   let [dailyCal, setDailyCal] = useState(Number)
   let [userDiet, setUserDiet] = useState("")
   let [currentDailyCal, setCurrentDailyCal] = useState(
-    {
-      "m": Number,
-      "tu": Number,
-      "w": Number,
-      "th": Number,
-      "f": Number,
-      "sa": Number,
-      "su": Number
-    })
+    [
+      Number,
+      Number,
+      Number,
+      Number,
+      Number,
+      Number,
+      Number
+    ])
   let [currentDailyMacros, setCurrentDailyMacros] = useState(
     {
       "m": {
@@ -63,7 +63,7 @@ function App() {
         "Breakfast":[],
         "Lunch":[],
         "Dinner":[],
-        "Snack": [{"title": "Curry", "calories":500},{"title": "Tacos", "calories":800} ]
+        "Snack": []
       },
       {
         "day":"Tu",
@@ -84,7 +84,7 @@ function App() {
         "Breakfast":[],
         "Lunch":[],
         "Dinner":[],
-        "Snack": [{"title": "Chinese", "calories":1000},{"title": "Rice", "calories":500} ]
+        "Snack": []
       },
       {
         "day":"Fr",
@@ -111,8 +111,37 @@ function App() {
   )
 
   function inputSelectedMeal(day, time, meal) {
-
   }
+
+  function getNutrition(nutrient, source) {
+    let nutrients = source["nutrition"]["nutrients"]
+    for (let j = 0; j < nutrients.length; j++) {
+        if (nutrients[j]["title"] === nutrient) return nutrients[j]["amount"]
+    }
+}
+
+  useEffect(() => {
+    for (let i = 0; i < selectedMeals.length; i++) {
+      let dayOfWeek = selectedMeals[i]
+      let dailyCal = 0;
+      for (const item in dayOfWeek) {
+        let isMeal = item !== "day";
+        let hasRecipe = item.length > 0
+        
+        if (isMeal && hasRecipe) {
+          // eslint-disable-next-line no-loop-func
+          dayOfWeek[item].forEach(meal => {
+            dailyCal += getNutrition("Calories", meal)
+          })
+        }
+      }
+      setCurrentDailyCal(prev => {
+        let output = [...prev]
+        output[i] = dailyCal
+        return output
+      })
+    }
+  }, [selectedMeals])
 
   let [initialInput, setInitialInput] = useState(true)
 
@@ -128,7 +157,9 @@ function App() {
       {!initialInput ? 
       <div>
         <MealPlanner 
-          selectedMeals={selectedMeals}/>
+          selectedMeals={selectedMeals}
+          currentDailyCal={currentDailyCal}  
+          />
         <SearchMeals
           setSelectedMeals={setSelectedMeals}
           inputSelectedMeal={inputSelectedMeal}

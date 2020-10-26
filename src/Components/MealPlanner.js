@@ -4,7 +4,7 @@ import React from 'react'
 export default function MealPlanner(props) {
 
     let mealArray = []
-    props.selectedMeals.forEach((value) => {
+    props.selectedMeals.forEach((value, index) => {
         mealArray.push(
             <div key={value["day"]} className="col-sm-1 dayOfWeekContainer">
                 <div className="dayOfWeek">{value["day"]}</div>
@@ -27,7 +27,9 @@ export default function MealPlanner(props) {
                     {mealCheck(value, "Snack")}
                     {/* {snackGenerator(value)} */}
                 </div>
-                    
+                <div className ="mealTime">
+                    {Math.round(props.currentDailyCal[index])}
+                </div>
             </div>
         )
     })
@@ -35,7 +37,7 @@ export default function MealPlanner(props) {
     function mealCheck(day, meal) {
         if (day[meal].length === 0) {
             return (
-                <span key={day[meal]["title"]}>o</span>
+                <span key={day[meal]["title"]}>-</span>
             )
         }
         let outputArray = [];
@@ -47,19 +49,7 @@ export default function MealPlanner(props) {
         return outputArray
     }
 
-    function snackGenerator(day) {
-        if (day["Snack"].length === 0) return
-        let outputArray = [];
-        for (let i=0; i < day["Snack"].length; i++) {
-            outputArray.push(
-                <div key={day["Snack"][i]["title"] + [i]}> 
-                    <div className="mealName">{day["Snack"][i]["title"]}</div>
-                    <div className="mealCal">{day["Snack"][i]["calories"]}</div>
-                </div>
-            )
-        }
-        return outputArray
-    }
+ 
     return (
         <div className="container">
             <div className="row">
@@ -69,6 +59,7 @@ export default function MealPlanner(props) {
                     <div className="mealTime">Lunch</div>
                     <div className="mealTime">Dinner</div>
                     <div className="mealTime">Snacks</div>
+                    <div className="mealTime">Daily Cal</div>
                 </div>
                 {mealArray}
             </div>
