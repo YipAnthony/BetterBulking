@@ -134,3 +134,7 @@ code {
   /* background-color: red!important; */
 
 }
+
+.untouchable {
+  pointer-events: none;
+}
