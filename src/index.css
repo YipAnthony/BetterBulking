@@ -138,3 +138,9 @@ code {
 .untouchable {
   pointer-events: none;
 }
+
+.mealCounter {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+}
