@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import apiCall from './apiCall'
 import SearchResultsContainer from './SearchResultsContainer'
 import FilterSearchContainer from './FilterSearchContainer'
+import SortDirectionFilter from './SortDirectionFilter'
 
 
 export default function SearchMeals(props) {
@@ -12,6 +13,8 @@ export default function SearchMeals(props) {
     const [cuisineFilter, setCuisineFilter] = useState([])
     const [dietFilter, setDietFilter] = useState("")
     const [intoleranceFilter, setIntoleranceFilter] = useState([])
+    const [sortFilter, setSortFilter] = useState("popularity")
+    const [sortDirectionFilter, setSortDirectionFilter] = useState("desc")
 
     function handleSearchInput(e) {
         setUserSearchInput(() => e.target.value)
@@ -25,7 +28,9 @@ export default function SearchMeals(props) {
             {
                 "cuisine":[...cuisineFilter],
                 "diet":dietFilter,
-                "intolerance":[...intoleranceFilter]
+                "intolerance":[...intoleranceFilter],
+                "sort": sortFilter,
+                "sortDirection": sortDirectionFilter
             }
         )
         setSearchResults(() => {
@@ -52,6 +57,8 @@ export default function SearchMeals(props) {
                 setDietFilter={setDietFilter}
                 intoleranceFilter={intoleranceFilter}
                 setIntoleranceFilter={setIntoleranceFilter}
+                setSortFilter={setSortFilter}
+                setSortDirectionFilter={setSortDirectionFilter}
             />
             <SearchResultsContainer
                 searchResults={searchResults}

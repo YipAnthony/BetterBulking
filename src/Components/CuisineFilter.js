@@ -45,7 +45,7 @@ export default function CuisineFilter(props) {
     
     return (
         <span className="form-group ">
-            <label for="exampleFormControlSelect1">Cuisine</label><br/>
+            <label>Cuisine</label><br/>
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cuisine</button>
             <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" >
                 {outputCuisineArray}    

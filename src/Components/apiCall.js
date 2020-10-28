@@ -22,14 +22,17 @@ export default async function apiCall(endpoint, input, filters) {
         })
         intolerances = intolerances.substr(0, intolerances.length - 1)
     }
-    console.log(api + "recipes/complexSearch?apiKey=" + apiKey + 
-    "&query=" + input + "&addRecipeNutrition=true" + 
-    cuisine + diet + intolerances)
+    
+    let sort = "&sort=" + filters["sort"]
+    
+    let sortDirection = "&sortDirection=" + filters["sortDirection"]
+
+
     if (endpoint === "search") {
         let response = await fetch(
             api + "recipes/complexSearch?apiKey=" + apiKey + 
             "&query=" + input + "&addRecipeNutrition=true" + 
-            cuisine + diet + intolerances, {
+            cuisine + diet + intolerances + sort + sortDirection, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
