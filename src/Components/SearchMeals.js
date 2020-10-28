@@ -19,7 +19,15 @@ export default function SearchMeals(props) {
     
     async function submitSearch() {
         let input = userSearchInput.replace(" ", "+")
-        let apiResults = await apiCall("search", input)
+        let apiResults = await apiCall(
+            "search", 
+            input, 
+            {
+                "cuisine":[...cuisineFilter],
+                "diet":dietFilter,
+                "intolerance":[...intoleranceFilter]
+            }
+        )
         setSearchResults(() => {
             return apiResults
         })

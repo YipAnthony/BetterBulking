@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function DietTypeFilter(props) {
     let dietFilter = [
-        "Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian",
+        "No preference", "Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian",
         "Vegan", "Pescetarian", "Paleo", "Primal", "Whole30"
     ]
 
@@ -15,6 +15,7 @@ export default function DietTypeFilter(props) {
 
     function handleSelect(e){
         let selectedDiet = e.target.value
+        if (selectedDiet === "No preference") selectedDiet = ""
         props.setDietFilter(() => selectedDiet)
     }
     
