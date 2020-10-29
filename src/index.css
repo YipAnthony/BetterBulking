@@ -144,3 +144,7 @@ code {
   margin-left: 5px;
   font-weight: bold;
 }
+
+.filterSearchContainer {
+  margin-left: 50px;
+}

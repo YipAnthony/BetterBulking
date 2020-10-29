@@ -11,6 +11,9 @@ export default async function apiCall(endpoint, input, filters) {
         cuisine = cuisine.substr(0, cuisine.length - 1)
     }
 
+    let mealType = "&type=" + filters["mealType"]
+    if (filters["mealType"] === "any") mealType = ""
+
     let diet = "&diet=" + filters["diet"]
     if (filters["diet"] === "") diet = ""
 
@@ -32,7 +35,7 @@ export default async function apiCall(endpoint, input, filters) {
         let response = await fetch(
             api + "recipes/complexSearch?apiKey=" + apiKey + 
             "&query=" + input + "&addRecipeNutrition=true" + 
-            cuisine + diet + intolerances + sort + sortDirection, {
+            cuisine + mealType + diet + intolerances + sort + sortDirection, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

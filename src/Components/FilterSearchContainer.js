@@ -4,6 +4,7 @@ import DietTypeFilter from './DietTypeFilter'
 import IntoleranceFilter from './IntoleranceFilter'
 import SortFilter from './SortFilter'
 import SortDirectionFilter from './SortDirectionFilter'
+import MealTypeFilter from './MealTypeFilter'
 
 
 export default function FilterSearchContainer(props) {
@@ -15,6 +16,9 @@ export default function FilterSearchContainer(props) {
             <CuisineFilter 
                 // cuisineFilter={props.cuisineFilter}
                 setCuisineFilter={props.setCuisineFilter}/>
+            <MealTypeFilter 
+                setMealTypeFilter={props.setMealTypeFilter}
+            />
             <DietTypeFilter setDietFilter={props.setDietFilter}/>
             <IntoleranceFilter 
                 // intoleranceFilter={props.intoleranceFilter}
