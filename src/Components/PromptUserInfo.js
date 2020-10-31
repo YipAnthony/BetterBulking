@@ -62,7 +62,9 @@ export default function PromptUserInfo(props) {
             <div className="userPrefContainer">
                 <label>What's your daily calorie intake goal?</label><br/>
                 <span className="smallerFont"><input value={calInput} 
+                    name="calorieInput"
                     onChange={handleInput} 
+                    data-test="calorieInput"
                     className="calForm form-control input border-0 shadow-none"></input><span>cals</span></span>
                 <br/>
                 <button 
