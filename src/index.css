@@ -106,16 +106,12 @@ code {
 }
 
 .addMealContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 90%;
+  position: relative;
+  width: 95%;
   height: 20%;
   margin: auto;
   z-index: 5;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
   border-radius: 10px;
   padding: 10px;
 }
@@ -147,4 +143,74 @@ code {
 
 .filterSearchContainer {
   margin-left: 50px;
+}
+
+.addMealOuterContainer {
+  position: absolute;
+  top:0; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 50vh;
+  width: 90vw;
+  margin: auto;
+  background-color: rgb(216, 216, 216);
+}
+
+.selectedMealImageInfo {
+  margin: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.mealTitle {
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.selectedMealTextInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.ingredientsPopUp {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-height: 80%;
+  width: 50%;
+  margin: auto;
+  z-index: 20;
+  background-color: white;
+}
+
+.ingredientsPopUp ul,
+.ingredientsPopUp ol {
+  height: 80%;
+  overflow: auto;
+}
+
+.popUpTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.closeButton:hover {
+  cursor: pointer;
+}
+
+.nutritionTitle {
+  font-size: 20px;
 }

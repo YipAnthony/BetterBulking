@@ -1,5 +1,5 @@
-import React from 'react'
-import {upArrow, downArrow} from './icons'
+import React, {useState} from 'react'
+import {upArrow, downArrow, linkIcon, xIcon} from './icons'
 
 export default function AddMealPopUp(props) {
 
@@ -180,21 +180,91 @@ export default function AddMealPopUp(props) {
         return outputArray
     }
 
+    let mealIngredients = [];
+    let ingredientsArray = props.mealToAdd['nutrition']['ingredients']
+    let numberServings = Number(props.mealToAdd["servings"])
+    ingredientsArray.forEach(ingredient => {
+        let adjustedToOneServing = ingredient['amount']/numberServings
+        mealIngredients.push(
+            <li key={ingredient['name']} className="individualIngredient">
+                <span>{ingredient['name']}, </span>
+                <span>{adjustedToOneServing + " " + ingredient['unit']}</span>
+            </li>
+        )
+    })
+
+    const [toggleIngredients, setToggleIngredients] = useState(false)
+    function handleIngredientsClick() {
+        setToggleIngredients(prev => !prev)
+    }
+
+    let instructions = [];
+    let instructionsArray = props.mealToAdd['analyzedInstructions'][0]['steps']
+    instructionsArray.forEach(step => {
+        instructions.push(
+            <li key={step['number'] + "instructions"}>
+                {step['step']}
+            </li>
+        )
+    })
+
+    const [toggleInstructions, setToggleInstructions] = useState(false)
+    function handleInstructionsClick() {
+        setToggleInstructions(prev => !prev)
+    }
+
     return (
-        <div className="addMealContainer">                                                                                                                                                                  
-            <div className="row">
-                <div className="col dayOfWeekContainer">
-                    <div className="dayOfWeek">Meal</div>
-                    <div className="mealTime">Breakfast</div>
-                    <div className="mealTime">Lunch</div>
-                    <div className="mealTime">Dinner</div>
-                    <div className="mealTime">Snacks</div>
+        <div className="addMealOuterContainer">
+            <div className="selectedMealImageInfo">
+                <img src={props.mealToAdd["image"]} alt={props.mealToAdd["id"]}/>
+                <div className="selectedMealTextInfo">
+                    <div className="mealTitle">
+                        {props.mealToAdd["title"]}
+                        <a href={props.mealToAdd['sourceUrl']} rel="noreferrer" target="_blank">{linkIcon}</a>
+                    </div>
+                    <div className="ml-4">
+                            <div className="nutritionTitle"> Nutrition (per serving): </div>
+                            <div><strong>Calories:</strong> {props.mealToAddNutrition['calories']}</div>
+                            <div><strong>Carbs:</strong> {props.mealToAddNutrition['carbs']}</div>
+                            <div><strong>Fat:</strong> {props.mealToAddNutrition['fat']}</div>
+                            <div><strong>Protein:</strong> {props.mealToAddNutrition['protein']}</div>
+                        </div>
+                    <div className='d-flex mt-4'>
+                        <button className="btn btn-sm btn-outline-dark ml-4" onClick={handleIngredientsClick}>Ingredients</button>
+                        {toggleIngredients ? 
+                        <div className="ingredientsPopUp">
+                            <div className="popUpTitle">Ingredients (per serving)</div>
+                            <span className="closeButton" onClick={handleIngredientsClick}>{xIcon}</span>
+                            <ul>{mealIngredients}</ul>
+                        </div> 
+                        :null}
+                        
+                        <button className="btn btn-sm btn-outline-dark ml-4" onClick={handleInstructionsClick}>Instructions</button>
+                        {toggleInstructions ? 
+                        <div className="ingredientsPopUp">
+                            <div className="popUpTitle">Instructions</div>
+                            <span className="closeButton" onClick={handleInstructionsClick}>{xIcon}</span>
+                            <ol>{instructions}</ol>
+                        </div> 
+                        :null}
+                    </div>
                 </div>
-                {mealArray}
             </div>
-            <button
-                className="btn btn-outline-dark btn-md"
-                onClick={() => props.setTogglePopUp(() => false)}>Close</button>
+            <div className="addMealContainer">                                                                                                                                                                  
+                <div className="row">
+                    <div className="col dayOfWeekContainer">
+                        <div className="dayOfWeek">Meal</div>
+                        <div className="mealTime">Breakfast</div>
+                        <div className="mealTime">Lunch</div>
+                        <div className="mealTime">Dinner</div>
+                        <div className="mealTime">Snacks</div>
+                    </div>
+                    {mealArray}
+                </div>
+                <button
+                    className="btn btn-outline-dark btn-md"
+                    onClick={() => props.setTogglePopUp(() => false)}>Close</button>
+            </div>
         </div>
     )
 }

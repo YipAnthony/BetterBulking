@@ -21,7 +21,7 @@ export default function MealTypeFilter(props) {
     
     return (
         <span className="form-group">
-            <label for="exampleFormControlSelect1">Meal Type</label>
+            <label>Meal Type</label>
             <select className="form-control dietFilterSelection" onChange={handleSelect} id="exampleFormControlSelect1">
                 {outputMealArray}
             </select>

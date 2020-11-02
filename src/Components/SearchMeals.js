@@ -17,7 +17,8 @@ export default function SearchMeals(props) {
     const [mealTypeFilter, setMealTypeFilter] = useState([])
 
     function handleSearchInput(e) {
-        setUserSearchInput(() => e.target.value)
+        let searchInput = e.target.value
+        setUserSearchInput(() => searchInput)
     }
     
     async function submitSearch() {

@@ -32,8 +32,10 @@ export default function PromptUserInfo(props) {
                 container.childNodes[i].classList.remove('active')
             }
         }
+        let selectedDiet = e.target.innerHTML
+        setUserDiet(() => selectedDiet)
         e.target.classList.add('active')
-        setUserDiet(() => e.target.innerHTML)
+        
     }
 
     let dietButtons = []

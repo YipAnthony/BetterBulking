@@ -21,7 +21,7 @@ export default function SortFilter(props) {
 
     return (
         <span className="form-group">
-            <label for="exampleFormControlSelect1">Sort By: </label>
+            <label>Sort By: </label>
             <select className="form-control dietFilterSelection" onChange={handleSelect} id="exampleFormControlSelect1">
                 {outputSortFilter}
             </select>

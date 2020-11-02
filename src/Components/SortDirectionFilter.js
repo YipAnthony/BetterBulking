@@ -11,7 +11,7 @@ export default function SortDirectionFilter(props) {
     
     return (
         <span className="form-group">
-            <label for="exampleFormControlSelect1">Sort Direction: </label>
+            <label>Sort Direction: </label>
             <select className="form-control dietFilterSelection" onChange={handleSelect} id="exampleFormControlSelect1">
                 <option>Most</option>
                 <option>Least</option>

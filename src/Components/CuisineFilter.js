@@ -14,7 +14,7 @@ export default function CuisineFilter(props) {
         outputCuisineArray.push(
             <div key={cuisineArray[i]} className="dropdown-item " onChange={handleSelection} >
                     <input data-cuisine={cuisineArray[i]} className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                    <label className="form-check-label untouchable" for="defaultCheck1" >
+                    <label className="form-check-label untouchable">
                         {cuisineArray[i]}
                     </label>
             </div>

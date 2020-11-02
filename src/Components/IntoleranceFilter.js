@@ -11,7 +11,7 @@ export default function IntoleranceFilter(props) {
         outputintoleranceArray.push(
             <div className="dropdown-item" key={intoleranceArray[i]} onChange={handleSelection}>
                     <input data-intolerance={intoleranceArray[i]} className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                    <label className="form-check-label" for="defaultCheck1">
+                    <label className="form-check-label">
                         {intoleranceArray[i]}
                     </label>
             </div>
