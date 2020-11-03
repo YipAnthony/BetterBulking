@@ -14,20 +14,27 @@ export default function SearchMeals(props) {
     const [intoleranceFilter, setIntoleranceFilter] = useState([])
     const [sortFilter, setSortFilter] = useState("popularity")
     const [sortDirectionFilter, setSortDirectionFilter] = useState("desc")
-    const [mealTypeFilter, setMealTypeFilter] = useState([])
+    const [mealTypeFilter, setMealTypeFilter] = useState(["any"])
 
     function handleSearchInput(e) {
         let searchInput = e.target.value
         setUserSearchInput(() => searchInput)
     }
     
-    async function submitSearch() {
+    const [currentResultPage, setCurrentResultPage] = useState(1)
+
+    async function submitSearch(number) {
         let input = userSearchInput.replace(" ", "+")
+
+        let offsetNumber = 0
+        if(number) offsetNumber = (number*10) - 10 
+
         let apiResults = await apiCall(
             "search", 
             input, 
             {
                 "cuisine":[...cuisineFilter],
+                "offset": offsetNumber,
                 "diet":dietFilter,
                 "intolerance":[...intoleranceFilter],
                 "sort": sortFilter,
@@ -50,7 +57,7 @@ export default function SearchMeals(props) {
                         className="searchForm form-control input border-0 shadow-none"></input>
                     <button 
                     className="btn btn-outline-dark btn-lg shadow-none"
-                    onClick={submitSearch}>Search</button>   
+                    onClick={() => submitSearch(1)}>Search</button>   
                 </span>
             </div>
             <FilterSearchContainer
@@ -68,6 +75,9 @@ export default function SearchMeals(props) {
                 selectedMeals={props.selectedMeals}
                 inputSelectedMeal={props.inputSelectedMeal}
                 setSelectedMeals={props.setSelectedMeals}
+                currentResultPage={currentResultPage}
+                setCurrentResultPage={setCurrentResultPage}
+                submitSearch={submitSearch}
                 />
         </div>
     )

@@ -1,3 +1,8 @@
+:root {
+  --primaryBlue: #6cbfda;
+  --secondaryBlue: #b2cede
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +15,23 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primaryBlue) var(--primaryBlue);
+}
+*::-webkit-scrollbar {
+  width: 7px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--secondaryBlue);
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primaryBlue);
+  border-radius: 20px;
+  border: 3px solid var(--primaryBlue);
 }
 
 .userInfoContainer{
@@ -108,7 +130,7 @@ code {
 .addMealContainer {
   position: relative;
   width: 95%;
-  height: 20%;
+  height: fit-content;
   margin: auto;
   z-index: 5;
   /* background-color: rgb(230, 230, 230); */
@@ -146,15 +168,23 @@ code {
 }
 
 .addMealOuterContainer {
-  position: absolute;
+  position: fixed;
   top:0; 
   right: 0;
   bottom: 0;
   left: 0;
-  height: 50vh;
-  width: 90vw;
+  height: fit-content;
+  width: 1000px;
   margin: auto;
   background-color: rgb(216, 216, 216);
+  border-radius: 10px;
+  box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2),
+    0px 12px 17px 2px rgba(0, 0, 0, 0.14),
+    0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+}
+
+.popUpButtonContainer {
+  flex-wrap: wrap;
 }
 
 .selectedMealImageInfo {
@@ -166,6 +196,7 @@ code {
 
 .mealTitle {
   margin-left: 20px;
+  margin-right: 40px;
   font-size: 24px;
   font-weight: bold;
 }
@@ -182,17 +213,18 @@ code {
   right: 0;
   bottom: 0;
   left: 0;
-  max-height: 80%;
+  height: fit-content;
+  max-height: 60vh;
+  overflow: auto;
   width: 50%;
   margin: auto;
   z-index: 20;
   background-color: white;
-}
-
-.ingredientsPopUp ul,
-.ingredientsPopUp ol {
-  height: 80%;
-  overflow: auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
 
 .popUpTitle {
@@ -213,4 +245,43 @@ code {
 
 .nutritionTitle {
   font-size: 20px;
+}
+
+.resultsNavBar {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.resultsNavBarNumbers {
+  margin: 5px;
+  color: rgba(0, 0, 0, 0.514);
+}
+
+.resultsNavBarNumbers:hover{
+  cursor: pointer;
+}
+
+.selectedResultPage {
+  font-weight: bold;
+  color: black !important;
+}
+
+.arrowIcon {
+  margin: auto;
+  margin-bottom: 7px;
+}
+
+.arrowIcon:hover {
+  cursor: pointer;
+}
+
+.nohighlight {
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none;   
 }

@@ -30,13 +30,20 @@ export default async function apiCall(endpoint, input, filters) {
     
     let sortDirection = "&sortDirection=" + filters["sortDirection"]
 
+    let offsetNumber = "&offset=" + filters["offset"]
 
     if (endpoint === "search") {
+
+        console.log(api + "recipes/complexSearch?apiKey=" + apiKey + 
+        "&query=" + input + "&addRecipeNutrition=true" + 
+        "&instructionsRequired=true" +
+        cuisine + mealType + diet + intolerances + offsetNumber + sort + sortDirection)
+
         let response = await fetch(
             api + "recipes/complexSearch?apiKey=" + apiKey + 
             "&query=" + input + "&addRecipeNutrition=true" + 
-            "&instructionsRequired=true" +
-            cuisine + mealType + diet + intolerances + sort + sortDirection, {
+            "&instructionsRequired=true" + 
+            cuisine + mealType + diet + intolerances + offsetNumber + sort + sortDirection, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
