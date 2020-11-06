@@ -15,11 +15,9 @@ export default function SearchResultsContainer(props) {
     }, [props.searchResults])
 
     if (!isEmpty) {
-        console.log(props.searchResults)
-        console.log(props.searchResults.results)
+        // console.log(props.searchResults)
+        // console.log(props.searchResults.results)
         let haveResults = props.searchResults.results.length > 0;
-
-        
 
         if (haveResults) {
             for (let i = 0; i < props.searchResults.results.length; i++){
@@ -95,7 +93,7 @@ export default function SearchResultsContainer(props) {
 
     let bottomResultsNav = [];
     let totalResults = Number(props.searchResults['totalResults'])
-    let numberOfPages = Math.round(totalResults/10)
+    let numberOfPages = Math.round(totalResults/20)
 
     let bottomRange = 1;
     bottomRange = currentResultPage - (currentResultPage%10) + 1

@@ -36,18 +36,25 @@ export default function MealPlanner(props) {
 
     
     function mealCheck(day, meal) {
-        if (day[meal].length === 0) {
+        let numberOfMeals = day[meal].length
+        if (numberOfMeals === 0) {
             return (
                 <span key={day[meal]["title"]}>-</span>
             )
-        }
-        let outputArray = [];
-        for (let i=0; i < day[meal].length; i++) {
-            outputArray.push(
-            <span key={day[meal][i]["title"] + [i]}> <img className="mealIcon" src={restaurant}/> </span>
+        } else if (numberOfMeals === 1) {
+            return (
+                <span key={day[meal]["title"]}>
+                    <img className="mealIcon" src={restaurant}/>
+                </span>
             )
         }
-        return outputArray
+        else {
+            return (
+                <span key={day[meal]["title"]}>
+                    <img className="mealIcon" src={restaurant}/> x {numberOfMeals}
+                </span>
+            )
+        }
     }
 
  

@@ -42,7 +42,7 @@ export default async function apiCall(endpoint, input, filters) {
         let response = await fetch(
             api + "recipes/complexSearch?apiKey=" + apiKey + 
             "&query=" + input + "&addRecipeNutrition=true" + 
-            "&instructionsRequired=true" + 
+            "&instructionsRequired=true" + "&number=20" +
             cuisine + mealType + diet + intolerances + offsetNumber + sort + sortDirection, {
                 method: 'GET',
                 headers: {
