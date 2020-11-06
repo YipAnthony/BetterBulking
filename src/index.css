@@ -109,7 +109,7 @@ code {
 }
 
 .singleRecipeResultImg {
-  width: 15%;
+  width: 300px;
 }
 
 .singleRecipeResultTitle {
@@ -284,4 +284,8 @@ code {
        -moz-user-select: none; 
         -ms-user-select: none; 
             user-select: none;   
+}
+
+.mealIcon {
+  width: 15px;
 }

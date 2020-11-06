@@ -13,7 +13,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "/home/anthony/TheOdinProject/bulkbetter/src/setupTests.js"
+      "/home/anthony/PersonalProjects/BetterBulking/src/setupTests.js"
     ]
   },
   "scripts": {

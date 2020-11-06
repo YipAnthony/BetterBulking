@@ -1,5 +1,5 @@
 import React from 'react'
-
+import restaurant from './images/restaurant.svg'
 
 export default function MealPlanner(props) {
 
@@ -33,6 +33,7 @@ export default function MealPlanner(props) {
             </div>
         )
     })
+
     
     function mealCheck(day, meal) {
         if (day[meal].length === 0) {
@@ -43,7 +44,7 @@ export default function MealPlanner(props) {
         let outputArray = [];
         for (let i=0; i < day[meal].length; i++) {
             outputArray.push(
-                <span key={day[meal][i]["title"] + [i]}>X</span>
+            <span key={day[meal][i]["title"] + [i]}> <img className="mealIcon" src={restaurant}/> </span>
             )
         }
         return outputArray
@@ -54,7 +55,7 @@ export default function MealPlanner(props) {
         <div className="container">
             <div className="row">
                 <div className="col-sm-2 dayOfWeekContainer">
-                    <div className="dayOfWeek">Meal</div>
+                    <div className="dayOfWeek">Meal </div>
                     <div className="mealTime">Breakfast</div>
                     <div className="mealTime">Lunch</div>
                     <div className="mealTime">Dinner</div>
