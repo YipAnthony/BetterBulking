@@ -1,13 +1,26 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import AddMealPopUp from './AddMealPopUp'
 import {leftArrow, rightArrow} from './icons'
 
 export default function SearchResultsContainer(props) {
 
-        let resultsArray = [];
-    let isEmpty = Number(Object.keys(props.searchResults).length) === 0
+    let resultsArray = [];
+
+    const [isEmpty, setIsEmpty] = useState(true)
+
+    useEffect(() => {
+        if(Number(Object.keys(props.searchResults).length) !== 0) {
+            setIsEmpty(() => false)
+        }
+    }, [props.searchResults])
+
     if (!isEmpty) {
+        console.log(props.searchResults)
+        console.log(props.searchResults.results)
         let haveResults = props.searchResults.results.length > 0;
+
+        
+
         if (haveResults) {
             for (let i = 0; i < props.searchResults.results.length; i++){
                 let item = props.searchResults.results[i]
@@ -85,22 +98,20 @@ export default function SearchResultsContainer(props) {
     let numberOfPages = Math.round(totalResults/10)
 
     let bottomRange = 1;
+    bottomRange = currentResultPage - (currentResultPage%10) + 1
     let topRange = numberOfPages;
     if (numberOfPages > 10) {
-        if (currentResultPage < 5) {
+        if (currentResultPage < 10) {
             topRange = 9;
         }
-        else if (topRange - currentResultPage < 5) {
-            bottomRange = topRange-9
-        }
         else {
-            bottomRange = currentResultPage - 4;
-            topRange = currentResultPage + 4;
+            topRange = bottomRange + 9
         }
     }
 
 
-    for (let i = bottomRange; i <= topRange; i++) {
+    for (let i = bottomRange; i < bottomRange + 10; i++) {
+        
         let selected = ""
         if (currentResultPage === i) selected=" selectedResultPage" 
         bottomResultsNav.push(
@@ -109,6 +120,7 @@ export default function SearchResultsContainer(props) {
                 {i}
             </span>
         )
+        if (currentResultPage === topRange) return
     }
 
     function handleClickPageNumber(e) {
@@ -119,6 +131,7 @@ export default function SearchResultsContainer(props) {
 
     function handleClickLeftArrow() {
         if (currentResultPage === 1) return
+
         let number = currentResultPage - 1
         setCurrentResultPage(prev => prev - 1)
         
@@ -127,6 +140,7 @@ export default function SearchResultsContainer(props) {
 
     function handleClickRightArrow() {
         if (currentResultPage === numberOfPages) return
+
         let number = currentResultPage + 1
         setCurrentResultPage(prev => prev + 1)
         submitSearch(number);

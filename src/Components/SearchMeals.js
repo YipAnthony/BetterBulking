@@ -42,6 +42,11 @@ export default function SearchMeals(props) {
                 "mealType": mealTypeFilter
             }
         )
+        if (apiResults['code'] === 402) {
+            alert('Daily API request quota exceeded')
+            console.log(apiResults)
+            return
+        }
         setSearchResults(() => {
             return apiResults
         })
