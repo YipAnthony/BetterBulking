@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import PromptUserInfo from './Components/PromptUserInfo'
 import MealPlanner from './Components/MealPlanner'
 import SearchMeals from './Components/SearchMeals'
+import MealsForTheDay from './Components/MealsForTheDay';
+import  {xIconBig} from './Components/icons'
 
 function App() {
 
@@ -145,6 +147,64 @@ function App() {
 
   let [initialInput, setInitialInput] = useState(true)
 
+  const [toggleShowSelectedMeal, setToggleShowSelectedMeal] = useState(false)
+  const [daySelectedMeal, setDaySelectedMeal] = useState({})
+
+  function showDayMeals (dayofWeek) {
+      let selectedDay = selectedMeals[dayofWeek]['day']
+      let objectOfSelectedMeals = selectedMeals[dayofWeek]
+      setDaySelectedMeal(() => objectOfSelectedMeals)
+      setToggleShowSelectedMeal(() => true)
+  }
+
+  const [toggleShoppingList, setToggleShoppingList] = useState(false)
+
+  const [ingredientsListState, setIngredientsListState] = useState([])
+
+  function handleGenerateShoppingListClick() {
+    let ingredientsList = []
+    let ingredientMap = new Map();
+    selectedMeals.forEach(meal => {
+      let types = ["Breakfast", "Lunch", "Dinner", "Snack"]
+      types.forEach(type => {
+        let mealArray = meal[type];
+        mealArray.forEach(item => {
+          let ingredientsArray = item['nutrition']['ingredients']
+          ingredientsArray.forEach(ingredient => {
+            let ingredientUnit = ingredient['name'] + "//" +ingredient['unit']
+
+            if (ingredientMap.has(ingredientUnit)) {
+              let amount = ingredientMap.get(ingredientUnit)
+              amount += ingredient['amount']
+              ingredientMap.set(ingredientUnit, amount)
+            }
+            else {
+              ingredientMap.set(ingredientUnit, ingredient['amount'])
+            }
+          })
+        })
+      })
+    })
+    console.log(ingredientMap)
+    ingredientMap.forEach( (value,key) => {
+      let array = key.split('//')
+      let ingred = array[0]
+      let unit = array[1]
+      ingredientsList.push(
+        <li key = {ingred+value+unit}>
+          <span>{ingred + " " + value + " " + unit}</span>
+        </li>
+      )
+    })
+    console.log(ingredientsList)
+    setIngredientsListState(() => ingredientsList)
+
+    setToggleShoppingList(()=> true)
+  }
+
+  function handleCloseIcon() {
+    setToggleShoppingList(() => false)
+  }
 
   return (
     <div className="App" data-test="App">
@@ -159,12 +219,26 @@ function App() {
         <MealPlanner 
           selectedMeals={selectedMeals}
           currentDailyCal={currentDailyCal}  
+          showDayMeals={showDayMeals}
+          handleGenerateShoppingListClick={handleGenerateShoppingListClick}
           />
+        {toggleShoppingList ? 
+          <div className="ingredientsList">
+            <div className="closeButton" onClick={handleCloseIcon}>{xIconBig}</div>
+            {ingredientsListState}
+          </div> 
+        : null}
         <SearchMeals
           setSelectedMeals={setSelectedMeals}
           inputSelectedMeal={inputSelectedMeal}
           selectedMeals={selectedMeals}
         />
+        {toggleShowSelectedMeal ? 
+        <MealsForTheDay
+          daySelectedMeal={daySelectedMeal}
+          setToggleShowSelectedMeal={setToggleShowSelectedMeal}
+        /> : null }
+        
       </div>
       :null
       }

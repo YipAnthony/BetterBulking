@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import restaurant from './images/restaurant.svg'
 
 export default function MealPlanner(props) {
 
     let mealArray = []
     props.selectedMeals.forEach((value, index) => {
+        
         mealArray.push(
-            <div key={value["day"]} className="col-sm-1 dayOfWeekContainer">
+            <div key={value["day"]} className="col-sm-1 dayOfWeekContainer" onClick={() => props.showDayMeals(index)}>
                 <div className="dayOfWeek">{value["day"]}</div>
                 <div className="mealTime">
                 {mealCheck(value, "Breakfast")}
@@ -34,6 +35,7 @@ export default function MealPlanner(props) {
         )
     })
 
+   
     
     function mealCheck(day, meal) {
         let numberOfMeals = day[meal].length
@@ -71,6 +73,7 @@ export default function MealPlanner(props) {
                 </div>
                 {mealArray}
             </div>
+            <button className="btn btn-md btn-outline-dark" onClick={props.handleGenerateShoppingListClick}>Generate Shopping List</button>
         </div>
     )
 }

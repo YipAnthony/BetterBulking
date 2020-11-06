@@ -289,3 +289,41 @@ code {
 .mealIcon {
   width: 15px;
 }
+
+.selectedDayMealsContainer, .ingredientsList {
+  position: fixed;
+  top: 0;
+  right:0;
+  bottom: 0;
+  left: 0;
+  width: 1000px;
+  height: 1000px;
+  margin: auto;
+  background-color: grey;
+  overflow: auto;
+}
+
+.selectedDayTitle {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.rightSideText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.rightSideTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.individualMeal {
+  display: flex;
+}
+
+.mealTypeTitle {
+  font-size: 20px;
+}
