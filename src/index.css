@@ -303,6 +303,15 @@ code {
   overflow: auto;
 }
 
+.ingredientsList {
+  height: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 7px 9px -4px rgba(0, 0, 0, 0.2),
+  0px 14px 21px 2px rgba(0, 0, 0, 0.14),
+  0px 5px 26px 4px rgba(0, 0, 0, 0.12); 
+}
+
 .selectedDayTitle {
   text-align: center;
   font-size: 22px;
@@ -315,7 +324,7 @@ code {
   margin-left: 15px;
 }
 
-.rightSideTitle {
+.rightSideTitle, .shoppingListTitle  {
   font-size: 18px;
   font-weight: bold;
 }
@@ -324,6 +333,7 @@ code {
   display: flex;
 }
 
-.mealTypeTitle {
+.mealTypeTitle{
   font-size: 20px;
 }
+

@@ -172,14 +172,14 @@ function App() {
           let ingredientsArray = item['nutrition']['ingredients']
           ingredientsArray.forEach(ingredient => {
             let ingredientUnit = ingredient['name'] + "//" +ingredient['unit']
-
+            let ingredientAmount = ingredient['amount']
             if (ingredientMap.has(ingredientUnit)) {
               let amount = ingredientMap.get(ingredientUnit)
               amount += ingredient['amount']
               ingredientMap.set(ingredientUnit, amount)
             }
             else {
-              ingredientMap.set(ingredientUnit, ingredient['amount'])
+              ingredientMap.set(ingredientUnit, ingredientAmount)
             }
           })
         })
@@ -190,6 +190,7 @@ function App() {
       let array = key.split('//')
       let ingred = array[0]
       let unit = array[1]
+      value = Math.round( (value + Number.EPSILON) * 100)/100
       ingredientsList.push(
         <li key = {ingred+value+unit}>
           <span>{ingred + " " + value + " " + unit}</span>
@@ -224,6 +225,7 @@ function App() {
           />
         {toggleShoppingList ? 
           <div className="ingredientsList">
+            <div className="shoppingListTitle">Shopping List</div>
             <div className="closeButton" onClick={handleCloseIcon}>{xIconBig}</div>
             {ingredientsListState}
           </div> 
